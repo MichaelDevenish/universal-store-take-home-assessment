@@ -16,5 +16,24 @@ services:
     ports:
       - "3001:27017"
 
+  # Inventory service containers
+  inventory:
+    build: ./services/inventory
+    depends_on:
+      - inventory-mongo
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./services/inventory:/services/inventory:cached
+      - inventory_node_modules:/services/inventory/node_modules
+    environment:
+      - MONGO_URL=mongodb://inventory-mongo:27017/mydatabase1
+    command: sh -c "cd /services/inventory && npm run seed && npm run dev"
+  inventory-mongo:
+    image: mongo:latest
+    ports:
+      - "4001:27017"
+
 volumes:
     catalog_node_modules:
+    inventory_node_modules:
