@@ -34,6 +34,19 @@ services:
     ports:
       - "4001:27017"
 
+  # PLP service container
+  product-landing-page:
+    build: ./services/product-landing-page
+    volumes:
+      - ./services/product-landing-page:/html:cached
+      - plp_node_modules:/html/node_modules
+    ports:
+      - "8080:3000"
+    depends_on:
+      - catalog
+      - inventory
+
 volumes:
     catalog_node_modules:
     inventory_node_modules:
+    plp_node_modules:
