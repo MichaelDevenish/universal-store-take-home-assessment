@@ -29,7 +29,7 @@ The Product Landing Page service needs to be updated to display a list of produc
 - [x] Create a model for Catalog items.
 - [x] Implement seed.ts so that it populates the database.
 - [x] Implement the catalog service api so that it returns a list of all catalog items using the model you've created.
-- [ ] Update the PLP service to query your new catalog service on load.
+- [x] Update the PLP service to query your new catalog service on load.
 - [ ] Render the image, title, sku, remaining quantity and price of each item in the catalog if it has more than 0 stock.
 
 ## Assessment Criteria
