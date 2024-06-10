@@ -1,4 +1,5 @@
 import {useFetchInventoryList} from "./hooks/fetchInventoryList";
+import {InventoryItem} from "../InventoryItem";
 
 export const InventoryList = () => {
   const {
@@ -7,12 +8,10 @@ export const InventoryList = () => {
   } = useFetchInventoryList()
   return (
     <>
-      {loading ? ('loading') : null}
-      {data.map((item) => {
-        return (
-          <div>{item.title} </div>
-        )
-      })}
+      {loading ? 'loading' : null}
+      {data.map((item) => (
+        <InventoryItem item={item}/>
+      ))}
     </>
   )
 }

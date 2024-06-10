@@ -1,0 +1,23 @@
+.inventory-item__image {
+    width: 200px;
+    height: 200px;
+}
+
+.inventory-item {
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.inventory-item__details {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

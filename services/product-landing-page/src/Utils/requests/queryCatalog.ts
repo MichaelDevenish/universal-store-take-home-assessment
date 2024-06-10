@@ -6,6 +6,7 @@ export interface Catalog {
   sku: string,
   title: string,
   price: string,
+  imageUrl: string
 }
 
 export const useQueryCatalog = ( ) => {

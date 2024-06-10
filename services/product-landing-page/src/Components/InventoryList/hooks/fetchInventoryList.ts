@@ -1,19 +1,16 @@
 import {Catalog, useQueryCatalog} from "../../../Utils/requests/queryCatalog";
-import {useQueryInventory} from "../../../Utils/requests/queryInventory";
+import {Inventory, useQueryInventory} from "../../../Utils/requests/queryInventory";
 import {useMemo} from "react";
 
-export const useFetchInventoryList = () => {
-  const queryCatalog = useQueryCatalog()
-  const queryInventory = useQueryInventory()
-
+export const useMapInventoryList = (inventory?: Inventory[], catalog?: Catalog[]) => {
   const inventoryLevels = useMemo(() => {
-    return new Map(queryInventory.data?.map((item) => {
+    return new Map(inventory?.map((item) => {
       return [item.sku, item.quantity]
     }))
-  }, [queryInventory])
+  }, [inventory])
 
-  const data = useMemo(() => {
-    return queryCatalog.data?.flatMap<Catalog & {inventoryLevel: number}>((catalog) => {
+  return useMemo(() => {
+    return catalog?.flatMap<Catalog & {inventoryLevel: number}>((catalog) => {
       const inventoryLevel = inventoryLevels.get(catalog.sku)
 
       if (!inventoryLevel || inventoryLevel === 0) {
@@ -25,7 +22,14 @@ export const useFetchInventoryList = () => {
         inventoryLevel
       }
     }) ?? []
-  }, [inventoryLevels,queryCatalog])
+  }, [inventoryLevels,catalog])
+
+}
+
+export const useFetchInventoryList = () => {
+  const queryCatalog = useQueryCatalog()
+  const queryInventory = useQueryInventory()
+  const data = useMapInventoryList(queryInventory.data, queryCatalog.data)
 
   return {
     loading: queryCatalog.isLoading || queryInventory.isLoading,

@@ -7,6 +7,7 @@ const fetchCatalog = async () => {
       sku: catalog.sku,
       title: catalog.title,
       price: catalog.price.toString(),
+      imageUrl: catalog.imageUrl
     }
   })
 }

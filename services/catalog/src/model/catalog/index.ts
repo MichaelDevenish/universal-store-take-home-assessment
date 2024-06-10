@@ -9,9 +9,13 @@ const catalogSchema = new mongoose.Schema({
     type: String,
     required: [true, 'title is required']
   },
-  price:{
+  price: {
     type: mongoose.Types.Decimal128,
     required: [true, 'price is required']
+  },
+  imageUrl: {
+    type: String,
+    required: [true, 'image is required']
   }
 });
 
