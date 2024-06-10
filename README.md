@@ -7,6 +7,20 @@ This project is a take-home assignment for a Senior Full Stack Developer positio
 All three services have been setup and configured to run via docker-compose.
 docker-compose up --build
 
+## Assumptions and Justifications
+I assumed I was freely able to use libraries in the implementation. Therefore I decided to use React Query for data loading
+and axios for network requests. This is a lot simpler and foolproof vs rolling my own implementation.
+
+I also had issues running the already implemented test framework on the client side so I ended up refactoring it to use
+ts-jest as its pretty straightforward to get working.
+
+I put various env configs into the docker compose file as they weren't too sensitive such as the server and client urls.
+But if these fields were more sensitive i'd extract them into an .env file that wouldn't be committed to source code and
+add documentation to the readme as to how to get the application running and where to source the secrets.
+
+I also implemented cors handling on the servers as they seemed to be missing them so I was unable to make client side requests.
+It should be well configured and only allow requests from the desired client.
+
 ## Catalog
 The catalog service is a simple REST API that provides a list of products. The service is written in Node.js and uses Express.js as the web framework. The service is configured to run on port 3000.
 The service contains two main files: 
